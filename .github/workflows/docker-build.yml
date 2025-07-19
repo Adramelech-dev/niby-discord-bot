@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up repo name in environment
-        run: echo "REPO_NAME=${{ github.event.repository.name }}" >> $GITHUB
+        run: echo "REPO_NAME=$(echo ${{ github.event.repository.name }})" >> $GITHUB_ENV
 
       - name: Set sanitized branch name
         run: echo "BRANCH_NAME=$(echo ${{ github.ref_name }} | tr '/' '-')" >> $GITHUB_ENV
