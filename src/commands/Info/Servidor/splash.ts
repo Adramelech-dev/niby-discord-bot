@@ -1,5 +1,5 @@
-import { Command } from '../../../structures/Command';
-import { Embed, ErrorEmbed } from '../../../extenders/discord/Embed';
+import { Command } from '@/structures/Command';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
 
 export default {

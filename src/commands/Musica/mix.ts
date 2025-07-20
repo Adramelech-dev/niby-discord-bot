@@ -1,7 +1,7 @@
-import { Command } from '../../structures/Command';
-import Client from '../../structures/Client';
-import music from '../../config/music';
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
+import music from '@/config/music';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
 import {
    ActionRowBuilder,
    AnyComponentBuilder,
@@ -79,7 +79,7 @@ export default {
          const embed = new Embed()
             .addField(
                `📻 [${totalRadios}] ${client.translate(guildData.language, `${this.LANG_KEY}.embed.availableRadios`)}:`,
-               `${rows.length > 1 ? mixOptions.slice(i, +Math.min(i + 4, totalRadios)).map((r) =>`- **${r.label}**`).join('\n') : mixOptions.map((r) =>`- **${r.label}**`).join('\n')}`  
+               `${rows.length > 1 ? mixOptions.slice(i, +Math.min(i + 4, totalRadios)).map((r) =>`- **${r.label}**`).join('\n') : mixOptions.map((r) =>`- **${r.label}**`).join('\n')}`
             )
 
             .setFooter({
@@ -184,7 +184,7 @@ export default {
                         .setStyle(TextInputStyle.Short);
 
                      const MODAL_ROW = new ActionRowBuilder().addComponents(MODAL_PAGE_OPTION);
-                     // @ts-ignore
+                     // @ts-expect-error
                      MODAL.addComponents(MODAL_ROW);
 
                      await b?.showModal(MODAL);
@@ -232,16 +232,16 @@ export default {
 
       collector.on('end', (collected) => {
          const lastSelected = Array.from(collected.values()).pop();
-         // @ts-ignore
+         // @ts-expect-error
          const labelSelected = lastSelected ? mixOptions.find((o) => o.value == lastSelected.values)!.label : undefined;
          // Desactivamos los botones y editamos el mensaje
          return client.utils.message
             .edit(message, radioMsg, {
                ...messages[paginaActual],
                content:
-                  // @ts-ignore
+                  // @ts-expect-error
                   lastSelected && lastSelected.values
-                     ? // @ts-ignore
+                     ?
                        `${client.allemojis.yes} **\`${labelSelected}\`**`
                      : client.translate(guildData.language, 'UTILS.MESSAGE.PAGINATION.collector.expire'),
                components: client.utils.message.disableComponents(messages[paginaActual]),

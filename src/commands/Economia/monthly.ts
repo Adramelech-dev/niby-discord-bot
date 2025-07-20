@@ -1,8 +1,8 @@
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
-import { Command } from '../../structures/Command';
-import Client from '../../structures/Client';
-import { ClaimType, IUser } from '../../database/schemas/UserSchema';
-import { IGuild } from '../../database/schemas/GuildSchema';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
+import { ClaimType, IUser } from '@/database/schemas/UserSchema';
+import { IGuild } from '@/database/schemas/GuildSchema';
 export default {
    DESCRIPTION: 'Reclama tu recompensa de monedas mensuales',
    ALIASES: ['mensual'],

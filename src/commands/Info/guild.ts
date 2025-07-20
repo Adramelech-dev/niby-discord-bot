@@ -1,8 +1,8 @@
-import { Command } from '../../structures/Command';
-import Client from '../../structures/Client';
-import { Embed } from '../../extenders/discord/Embed';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
+import { Embed } from '@/extenders/discord/Embed';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, Locale, PermissionFlagsBits } from 'discord.js';
-import LocaleEmojis from '../../config/LocaleEmojis';
+import LocaleEmojis from '@/config/LocaleEmojis';
 
 export default {
    ALIASES: ['serverinfo', 'guildinfo'],

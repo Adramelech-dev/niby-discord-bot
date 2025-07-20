@@ -1,4 +1,4 @@
-import Client from '../Client';
+import Client from '@/structures/Client';
 
 import {
    ActionRowBuilder,
@@ -11,7 +11,7 @@ import {
    TextInputStyle,
    parseEmoji,
 } from 'discord.js';
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
 
 type PaginationOptions = {
    startFrom?: number;
@@ -37,6 +37,7 @@ export default class MessageUtils {
          const codepoints = this.client.utils.general
             .toCodePoint(unicode.indexOf(String.fromCharCode(0x200d)) < 0 ? unicode.replace(/\uFE0F/g, '') : unicode)
             .toLowerCase();
+
          return {
             str,
             parsed: parseEmoji(str)!,
@@ -46,7 +47,7 @@ export default class MessageUtils {
                : `https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/${codepoints}.png`,
          };
       });
-      // @ts-ignore
+      // @ts-expect-error
       return filterDupes ? matchedEmojis.reduce((a, c) => (!a.find((item) => item.str === c.str) ? a.concat([c]) : a), []) : matchedEmojis;
    }
 
@@ -295,7 +296,7 @@ export default class MessageUtils {
                      .setStyle(TextInputStyle.Short);
 
                   const MODAL_ROW = new ActionRowBuilder().addComponents(MODAL_PAGE_OPTION);
-                  // @ts-ignore
+                  // @ts-expect-error
                   MODAL.addComponents(MODAL_ROW);
 
                   await b?.showModal(MODAL);
@@ -565,7 +566,7 @@ export default class MessageUtils {
                      .setStyle(TextInputStyle.Short);
 
                   const MODAL_ROW = new ActionRowBuilder().addComponents(MODAL_PAGE_OPTION);
-                  // @ts-ignore
+                  // @ts-expect-error
                   MODAL.addComponents(MODAL_ROW);
                   await b?.showModal(MODAL);
                   await b

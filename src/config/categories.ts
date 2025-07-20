@@ -1,5 +1,5 @@
 import { PermissionFlagsBits } from 'discord.js';
-import EmojiList from './EmojiList';
+import EmojiList from '@/config/EmojiList';
 
 export default {
    Admin: {

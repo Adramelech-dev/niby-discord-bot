@@ -1,7 +1,7 @@
-import { Command } from '../../structures/Command';
-import Client from '../../structures/Client';
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
-import { default as LocaleList } from '../../config/LocaleEmojis';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
+import { default as LocaleList } from '@/config/LocaleEmojis';
 import {
    ActionRowBuilder,
    AnyComponentBuilder,
@@ -193,7 +193,7 @@ export default {
                         .setStyle(TextInputStyle.Short);
 
                      const MODAL_ROW = new ActionRowBuilder().addComponents(MODAL_PAGE_OPTION);
-                     // @ts-ignore
+                     // @ts-expect-error
                      MODAL.addComponents(MODAL_ROW);
 
                      await b?.showModal(MODAL);
@@ -277,16 +277,17 @@ export default {
 
       collector.on('end', (collected) => {
          const lastSelected = Array.from(collected.values()).pop();
-         // @ts-ignore
+         if (!lastSelected) return;
+         // @ts-expect-error
          const labelSelected = lastSelected ? languageOptions.find((o) => o.value == lastSelected.values)!.label : undefined;
          // Desactivamos los botones y editamos el mensaje
          return client.utils.message
             .edit(message, radioMsg, {
                ...messages[paginaActual],
                content:
-                  // @ts-ignore
+                  // @ts-expect-error
                   lastSelected && lastSelected.values
-                     ? // @ts-ignore
+                     ?
                        `${client.allemojis.yes} **\`${labelSelected}\`**`
                      : client.translate(guildData.language, 'UTILS.MESSAGE.PAGINATION.collector.expire'),
                components: client.utils.message.disableComponents(messages[paginaActual]),

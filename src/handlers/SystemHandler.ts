@@ -1,4 +1,4 @@
-import Client from '../structures/Client';
+import Client from '@/structures/Client';
 
 export function ExecuteSystems(client:Client, eventName, guildData, userData, ...params) {
     const systems = client.systems.filter(s => s.EVENT === eventName);

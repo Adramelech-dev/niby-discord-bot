@@ -1,7 +1,7 @@
 import { GiveawaysManager } from 'discord-giveaways';
-import giveawaySchema from '../database/schemas/GiveawaySchema';
+import giveawaySchema from '@/database/schemas/GiveawaySchema';
 import { ColorResolvable } from 'discord.js';
-import Client from './Client';
+import Client from '@/structures/Client';
 export default class extends GiveawaysManager{
         constructor(client:Client, options = {
             default: {

@@ -1,4 +1,4 @@
-import addProperties from '../utils/addProperties';
+import addProperties from '@/utils/addProperties';
 
 addProperties(String.prototype, {
    isValidUrl: function (this: string) {

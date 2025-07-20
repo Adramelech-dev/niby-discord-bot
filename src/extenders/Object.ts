@@ -1,4 +1,4 @@
-import addProperties from '../utils/addProperties';
+import addProperties from '@/utils/addProperties';
 
 addProperties(Object.prototype, {
    isValid: function (this:object): boolean {

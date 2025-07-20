@@ -1,6 +1,6 @@
-import { ErrorEmbed } from '../../extenders/discord/Embed';
-import GiveawaySchema from '../../database/schemas/GiveawaySchema';
-import { Command } from '../../structures/Command';
+import { ErrorEmbed } from '@/extenders/discord/Embed';
+import GiveawaySchema from '@/database/schemas/GiveawaySchema';
+import { Command } from '@/structures/Command';
 export default {
    async execute(client, interaction, args, prefix, guildData) {
       const giveawayDatas = await GiveawaySchema.find({ guildId: interaction.guild.id, ended: false });

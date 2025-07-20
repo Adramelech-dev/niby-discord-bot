@@ -1,5 +1,5 @@
-import { Embed, ErrorEmbed } from '../../../extenders/discord/Embed';
-import { Command } from '../../../structures/Command';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
+import { Command } from '@/structures/Command';
 
 const morseCode = {
    A: '.-',

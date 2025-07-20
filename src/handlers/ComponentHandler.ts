@@ -1,8 +1,8 @@
 import { PermissionFlagsBits } from 'discord.js';
-import Client from '../structures/Client';
-import { ErrorEmbed } from '../extenders/discord/Embed';
-import { isAllowedToExecute } from './CommandHandler';
-import { ComponentType, Component } from '../typings/component';
+import Client from '@/structures/Client';
+import { ErrorEmbed } from '@/extenders/discord/Embed';
+import { isAllowedToExecute } from '@/handlers/CommandHandler';
+import { ComponentType, Component } from '@/typings/component';
 
 export async function ComponentHandler(client: Client, interaction) {
    const GUILD_DATA = await client.db.getGuildData(interaction.guild!.id);

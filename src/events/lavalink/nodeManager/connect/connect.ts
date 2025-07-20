@@ -1,10 +1,10 @@
-import { ExecuteSystems } from "../../../../handlers/SystemHandler";
-import LavalinkManager from "../../../../structures/LavalinkManager";
+import { ExecuteSystems } from '@/handlers/SystemHandler';
+import LavalinkManager from '@/structures/LavalinkManager';
 
 export default (manager:LavalinkManager, node) => {
    console.success(`Conectado al nodo ${node.id} de LAVALINK!`);
 
-   // @ts-ignore
+   // @ts-expect-error
    const eventName = this.default.NAME;
    return ExecuteSystems(manager.client, eventName, null, null, manager);
 };

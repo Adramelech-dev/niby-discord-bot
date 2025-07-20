@@ -1,8 +1,8 @@
 import { GuildMember } from 'discord.js';
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
-import Client from '../../structures/Client';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
 import ms from 'ms';
-import { Command } from '../../structures/Command';
+import { Command } from '@/structures/Command';
 export default {
    PERMISSIONS: ['ModerateMembers'],
    BOT_PERMISSIONS: ['ModerateMembers'],

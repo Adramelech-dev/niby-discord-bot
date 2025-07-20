@@ -16,26 +16,26 @@ import {
    SlashCommandBuilder,
 } from 'discord.js';
 import { ClusterClient, getInfo } from 'discord-hybrid-sharding';
-import ClientUtils from '../structures/ClientUtils';
+import ClientUtils from '@/structures/ClientUtils';
 import path from 'path';
-import EmojiList from '../config/EmojiList';
-import { CommandCooldown } from '../typings/command';
-import { Component, Components } from '../typings/component';
-import { Cache, RedisCache } from './Cache';
-import Database from '../database/mongoose';
+import EmojiList from '@/config/EmojiList';
+import { CommandCooldown } from '@/typings/command';
+import { Component, Components } from '@/typings/component';
+import { Cache, RedisCache } from '@/structures/Cache';
+import Database from '@/database/mongoose';
 import { promises } from 'fs';
-import { Locale } from '../typings/locales';
-import ezLoad from '../utils/ezLoad';
-import { Command } from './Command';
-import CustomStatus from '../config/status';
+import { Locale } from '@/typings/locales';
+import ezLoad from '@/utils/ezLoad';
+import { Command } from '@/structures/Command';
+import CustomStatus from '@/config/status';
 import * as redis from 'redis';
-import LavalinkManager from './LavalinkManager';
-import { Category } from './Category';
-import GiveawaysManager from './GiveawaysManager';
-import { SubCategory } from './SubCategory';
-import { Snipe } from '../typings/snipes';
-import { System } from '../typings/system';
-import PaypalManager from './PaypalManager';
+import LavalinkManager from '@/structures/LavalinkManager';
+import { Category } from '@/structures/Category';
+import GiveawaysManager from '@/structures/GiveawaysManager';
+import { SubCategory } from '@/structures/SubCategory';
+import { Snipe } from '@/typings/snipes';
+import { System } from '@/typings/system';
+import PaypalManager from '@/structures/PaypalManager';
 
 const DefaultClientOptions = {
    shards: getInfo().SHARD_LIST, // An array of shards that will get spawned
@@ -57,41 +57,41 @@ const DefaultClientOptions = {
       }, // DON'T
       bans: {
          interval: 3600, // Every hour...
-			filter: () => () => true, // Remove all bans.
+         filter: () => () => true, // Remove all bans.
       },
       messages: {
-			interval: 3600, // Every hour...
-			lifetime: 1800, // Remove messages older than 30 minutes.
-		},
+         interval: 3600, // Every hour...
+         lifetime: 1800, // Remove messages older than 30 minutes.
+      },
       users: {
-			interval: 3600, // Every hour...
-			filter: () => user => user.id !== user.client.user.id, // Remove all BOTS.
-		},
+         interval: 3600, // Every hour...
+         filter: () => user => user.id !== user.client.user.id, // Remove all BOTS.
+      },
       reactions: {
-			interval: 3600, // Every hour...
-			filter: () => () => true, // Remove all reactions.
-		},
+         interval: 3600, // Every hour...
+         filter: () => () => true, // Remove all reactions.
+      },
       threads: {
-			interval: 3600, // Every hour...
-			lifetime: 1800, // Remove messages older than 30 minutes.
-			filter: () => () => true, // Remove all threads.
-		},
+         interval: 3600, // Every hour...
+         lifetime: 1800, // Remove messages older than 30 minutes.
+         filter: () => () => true, // Remove all threads.
+      },
       invites: {
-			interval: 3600, // Every hour...
-			filter: () => () => true, // Remove all invites.
-		},
+         interval: 3600, // Every hour...
+         filter: () => () => true, // Remove all invites.
+      },
       stickers: {
-			interval: 3600, // Every hour...
-			filter: () => () => true, // Remove all stickers.
-		},
+         interval: 3600, // Every hour...
+         filter: () => () => true, // Remove all stickers.
+      },
       guildMembers: {
-			interval: 3600, // Every hour...
-			filter: () => (member) => member.user.id !== member.client.user.id && !member.voice.channelId, // Remove all guildMembers except myself and connected vcs.
-		},
+         interval: 3600, // Every hour...
+         filter: () => (member) => member.user.id !== member.client.user.id && !member.voice.channelId, // Remove all guildMembers except myself and connected vcs.
+      },
       autoModerationRules: {
-			interval: 3600, // Every hour...
-			filter: () => () => true, // Remove all autoModerationRules.
-		},
+         interval: 3600, // Every hour...
+         filter: () => () => true, // Remove all autoModerationRules.
+      },
    },
    makeCache: Options.cacheWithLimits({
       ...Options.DefaultMakeCacheSettings,
@@ -170,20 +170,17 @@ export default class Client extends DiscordClient {
    wrappers: Wrappers = {};
    statusIndex: number = 0;
    redisClient: redis.RedisClientType | null = null;
-   // @ts-ignore | SI SE VA A INICIAR
-   redisCache: RedisCache | Cache;
-   // @ts-ignore | SI SE VA A INICIAR
-   lavalink: LavalinkManager;
+   redisCache!: RedisCache | Cache;
+   lavalink!: LavalinkManager;
    giveawaysManager: GiveawaysManager = new GiveawaysManager(this);
    translate: (locale: Locale, text: string, ...params: object[]) => string;
    snipes: Collection<string, Snipe> = new Collection();
    systems: Collection<string, System> = new Collection();
-   released: boolean = Date.now() >= parseInt(process.env.RELEASE_DATE);
-   paypal:PaypalManager = new PaypalManager({
+   paypal: PaypalManager = new PaypalManager({
       mode: process.env.PAYPAL_MODE,
       user: process.env.PAYPAL_CLIENT,
       secret: process.env.PAYPAL_SECRET,
-  });
+   });
 
    constructor(options?: DiscordClientOptions) {
       super(options || DefaultClientOptions);
@@ -192,7 +189,6 @@ export default class Client extends DiscordClient {
 
       this.cache = new Cache();
       this.cache.set('fetchedApplication', []);
-      // @ts-ignore
       this.cache.set('locales', new Collection());
       this.start();
    }
@@ -220,49 +216,22 @@ export default class Client extends DiscordClient {
    }
 
    private async start() {
-      if(this.released){
-         await this.loadExtenders();
-         await this.loadRedis(); // Carga la caché de redis o usa la default como fallback
+      await this.loadExtenders();
+      await this.loadRedis(); // Carga la caché de redis o usa la default como fallback
 
-         this.lavalink = new LavalinkManager(this);
+      this.lavalink = new LavalinkManager(this);
 
-         await this.loadEvents();
-         await this.loadHandlers();
+      await this.loadEvents();
+      await this.loadHandlers();
 
-         // WRAPPERS | PRE-ESSENTIALS
-         await this.loadWrappers();
+      // WRAPPERS | PRE-ESSENTIALS
+      await this.loadWrappers();
 
-         // BOT ESSENTIALS
-         this.loadAllComponents();
-         await this.loadCommands();
-         await this.db.connect();
-      } else {
-         await this.loadExtenders();
-         await this.loadRedis(); // Carga la caché de redis o usa la default como fallback
-
-         this.lavalink = new LavalinkManager(this);
-         const ruta = `${process.cwd()}/dist/events/bot/client/ready.js`;
-         const PULL = (await import(ruta)).default;
-         const PULL_NAME = path.basename(ruta).split('.')[0];
-         PULL.NAME = path.basename(ruta).split('.')[0];
-         PULL.PATH = ruta;
-         PULL.LANG_KEY = `EVENTS.${PULL_NAME}.execute`;
-         this.on(PULL_NAME, PULL.bind(null, this));
-
-         // await this.loadEvents();
-         // await this.loadHandlers();
-
-         // WRAPPERS | PRE-ESSENTIALS
-         // await this.loadWrappers();
-
-         // BOT ESSENTIALS
-         // this.loadAllComponents();
-         // await this.loadCommands();
-         await this.db.connect();
-      }
+      // BOT ESSENTIALS
+      this.loadAllComponents();
+      await this.loadCommands();
+      await this.db.connect();
       // ESSENTIALS
-
-
       this.login(process.env.BOT_TOKEN);
    }
 
@@ -419,23 +388,23 @@ export default class Client extends DiscordClient {
          );
       }
       console.success(
-         `([x]) ${RUTA_ARCHIVOS.length} ${
-            RUTA_ARCHIVOS.length !== 1
-               ? `${component[0].toUpperCase()}${component.slice(1)} Cargados`
-               : `${component.capitalizeFirstChar().removeLastChar()} Cargado`
+         `([x]) ${RUTA_ARCHIVOS.length} ${RUTA_ARCHIVOS.length !== 1
+            ? `${component[0].toUpperCase()}${component.slice(1)} Cargados`
+            : `${component.capitalizeFirstChar().removeLastChar()} Cargado`
          }`,
       );
    }
 
-   async loadCommands(originDir = '/dist/commands') {
+   async loadCommands(folderName = '/commands') {
       try {
          this.slashArray = [];
          await this.commands.clear();
+         const baseDir = `${process.cwd()}/dist${folderName}`;
 
-         const dirs = (await promises.readdir(`${process.cwd()}${originDir}`)).filter((d) => !d.endsWith('.ts'));
+         const dirs = (await promises.readdir(baseDir)).filter((d) => !d.endsWith('.ts'));
          for (const dir of dirs) {
             // If its a category aka subcommand / groupcommand:
-            if (!dir.endsWith('.js') && (await promises.lstat(`${process.cwd()}${originDir}/${dir}/`).catch(() => null))?.isDirectory?.()) {
+            if (!dir.endsWith('.js') && (await promises.lstat(`${baseDir}/${dir}/`).catch(() => null))?.isDirectory?.()) {
                const category = new Category(this, { name: dir });
                this.categories.set(dir, category);
                // Set the SubCommand as a Slash Builder
@@ -443,11 +412,11 @@ export default class Client extends DiscordClient {
                const subSlash = new SlashCommandBuilder().setName(String(dir).toLowerCase()).setDescription(`Mira los comandos de ${dir}`);
 
                const slashCommands = await promises
-                  .readdir(`${process.cwd()}${originDir}/${dir}/`)
+                  .readdir(`${baseDir}/${dir}/`)
                   .then((files) => files.filter((file) => !file.endsWith('.ts')));
 
                for (const file of slashCommands) {
-                  const curPath = `${process.cwd()}${originDir}/${dir}/${file}`;
+                  const curPath = `${baseDir}/${dir}/${file}`;
                   // If it's /commands/slash/XYZ/GROUP/cmd.js
                   const lstat = await promises.lstat(curPath);
                   if (lstat.isDirectory?.()) {
@@ -499,8 +468,9 @@ export default class Client extends DiscordClient {
                                  Slash.setName(builtCommand.NAME).setDescription(builtCommand.DESCRIPTION);
                                  if (builtCommand.LOCALIZATIONS?.length) {
                                     for (const localization of builtCommand.LOCALIZATIONS) {
-                                       if (localization.name)
-                                          Slash.setNameLocalization(localization.name[0] as DiscordLocale, localization.name[1]);
+                                       if (localization.name) {
+                                          Slash.setNameLocalization(localization.name[0] as DiscordLocale, localization.name[1])
+                                       }
                                        if (localization.description)
                                           Slash.setDescriptionLocalization(
                                              localization.description[0] as DiscordLocale,
@@ -562,7 +532,7 @@ export default class Client extends DiscordClient {
                }
                this.slashArray.push(subSlash.toJSON());
             } else {
-               const curPath = `${process.cwd()}${originDir}/${dir}`;
+               const curPath = `${baseDir}/${dir}`;
                delete require.cache[require.resolve(curPath)];
                const command = (await import(curPath)).default;
                if (!command?.execute) {
@@ -734,7 +704,6 @@ export default class Client extends DiscordClient {
       const allSlashs =
          (await this.application.commands
             .fetch(undefined, { guildId: undefined })
-            // @ts-ignore
             .then((x) => [...x.values()])
             .catch((e) => console.error(e))) || [...this.application.commands.cache.values()] ||
          [];

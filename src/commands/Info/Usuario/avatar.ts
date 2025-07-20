@@ -1,7 +1,7 @@
-import { Command } from '../../../structures/Command';
-import { Embed } from '../../../extenders/discord/Embed';
+import { Command } from '@/structures/Command';
+import { Embed } from '@/extenders/discord/Embed';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, GuildMember } from 'discord.js';
-import Client from '../../../structures/Client';
+import Client from '@/structures/Client';
 
 export default {
    ALIASES: ['useravatar', 'uavatar', 'memberavatar', 'mavatar'],

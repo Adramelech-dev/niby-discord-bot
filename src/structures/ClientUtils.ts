@@ -1,10 +1,10 @@
-import Client from '../structures/Client';
-import GeneralUtils from '../structures/utils/General';
-import LocaleUtils from './utils/LocaleUtils';
-import PermissionUtils from './utils/Permissions';
-import MessageUtils from './utils/Message';
-import EconomyUtils from './utils/Economy';
-import MusicUtils from './utils/Music';
+import Client from '@/structures/Client';
+import GeneralUtils from '@/structures/utils/General';
+import LocaleUtils from '@/structures/utils/LocaleUtils';
+import PermissionUtils from '@/structures/utils/Permissions';
+import MessageUtils from '@/structures/utils/Message';
+import EconomyUtils from '@/structures/utils/Economy';
+import MusicUtils from '@/structures/utils/Music';
 
 export default class ClientUtils {
    perms: PermissionUtils;

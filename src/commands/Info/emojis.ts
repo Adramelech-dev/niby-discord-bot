@@ -1,6 +1,6 @@
-import { Command } from '../../structures/Command';
-import { Embed } from '../../extenders/discord/Embed';
-import Client from '../../structures/Client';
+import { Command } from '@/structures/Command';
+import { Embed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
 
 export default {
    execute(client: Client, message, args, prefix, guildData) {

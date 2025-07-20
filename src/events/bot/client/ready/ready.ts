@@ -1,5 +1,5 @@
-import { ExecuteSystems } from '../../../../handlers/SystemHandler';
-import Client from '../../../../structures/Client';
+import { ExecuteSystems } from '@/handlers/SystemHandler';
+import Client from '@/structures/Client';
 export default async (client: Client) => {
    console.success(`Sesión iniciada como: ${client.user?.tag} | Cluster #${client.cluster.id}`, {
       sendWebhook: true,
@@ -14,13 +14,13 @@ export default async (client: Client) => {
 
    client.setInvite();
    // require the Dashboard
-   if (process.env.DASHBOARD == "true") await import('../../../../dashboard/index').then(pull => pull.default(client));
+   if (process.env.DASHBOARD == "true") await import('../../../../api/index').then(pull => pull.default(client));
 
    await client.publishCommands();
    // Wait 1s before releasing
    await client.utils.general.delay(1000);
    await client.prepareCommands();
-   
+
    // @ts-ignore
    const eventName = this.default.NAME;
    return ExecuteSystems(client, eventName, null, null);

@@ -1,9 +1,9 @@
-import { Embed, ErrorEmbed } from "../../extenders/discord/Embed";
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
-import GiveawaySchema from "../../database/schemas/GiveawaySchema";
+import GiveawaySchema from '@/database/schemas/GiveawaySchema';
 import { GiveawayData } from "discord-giveaways";
-import { Command } from "../../structures/Command";
-import Client from "../../structures/Client";
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
 export default {
     OPTIONS: [
         {

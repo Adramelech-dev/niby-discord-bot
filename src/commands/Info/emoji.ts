@@ -1,6 +1,6 @@
-import { Command } from '../../structures/Command';
-import Client from '../../structures/Client';
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
 
 export default {
    ALIASES: ['emojiinfo'],

@@ -1,7 +1,7 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
-import Client from '../../structures/Client';
-import { Command } from '../../structures/Command';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
+import { Command } from '@/structures/Command';
 import ms from 'ms';
 
 export default {
@@ -202,7 +202,7 @@ export default {
                            .setEmoji(guildData.giveaway.emoji),
                      ]),
                   ],
-                  // @ts-ignore
+                  // @ts-expect-error
                   allowedMentions: { parse: ['users'] },
                   replyToGiveaway: true,
                },

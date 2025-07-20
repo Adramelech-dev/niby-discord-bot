@@ -1,6 +1,6 @@
-import { Command } from '../../structures/Command';
-import Client from '../../structures/Client';
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, Role } from 'discord.js';
 
 export default {
@@ -92,7 +92,6 @@ export default {
                )
                .addField(
                   `${client.allemojis.builder} ${client.translate(guildData.language, `${this.LANG_KEY}.embed.field.permissions`)}`,
-                  // @ts-ignore
                   `>>> ${
                      role.id == message.guild.ownerId
                         ? `\`${client.translate(guildData.language, `PERMISSIONS.Owner`)}\``

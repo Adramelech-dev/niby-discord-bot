@@ -1,7 +1,7 @@
-import { Command } from '../../structures/Command';
-import Client from '../../structures/Client';
-import { IUser } from '../../database/schemas/UserSchema';
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
+import { IUser } from '@/database/schemas/UserSchema';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
 
 export default {
    USER_PREMIUM: true,

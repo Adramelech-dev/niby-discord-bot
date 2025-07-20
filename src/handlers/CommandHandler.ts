@@ -8,7 +8,7 @@ import {
    ButtonStyle,
    Locale,
 } from 'discord.js';
-import { ErrorEmbed, Embed } from '../extenders/discord/Embed';
+import { ErrorEmbed, Embed } from '@/extenders/discord/Embed';
 import {
    cooldownCategoriesHigh,
    cooldownCommandsHigh,
@@ -17,13 +17,13 @@ import {
    cooldownCommands,
    defaultCooldownMs,
    maximumCoolDownCommands,
-} from '../config/Cooldowns';
-import CategorySettings from '../config/categories';
-import Client from '../structures/Client';
-import { Command } from '../structures/Command';
-import { Component } from '../typings/component';
-import { isCommand } from '../typings/command';
-import { buildCategoryEmbeds } from '../commands/Info/Bot/help';
+} from '@/config/Cooldowns';
+import CategorySettings from '@/config/categories';
+import Client from '@/structures/Client';
+import { Command } from '@/structures/Command';
+import { Component } from '@/typings/component';
+import { isCommand } from '@/typings/command';
+import { buildCategoryEmbeds } from '@/commands/Info/Bot/help';
 
 const type = 'COMMANDS';
 

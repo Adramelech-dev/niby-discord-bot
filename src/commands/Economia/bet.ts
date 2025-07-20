@@ -1,8 +1,8 @@
-import { IGuild } from '../../database/schemas/GuildSchema';
-import { IUser } from '../../database/schemas/UserSchema';
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
-import Client from '../../structures/Client';
-import { Command } from '../../structures/Command';
+import { IGuild } from '@/database/schemas/GuildSchema';
+import { IUser } from '@/database/schemas/UserSchema';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
+import { Command } from '@/structures/Command';
 
 export default {
    DESCRIPTION: 'Apuesta una cantidad de monedas',

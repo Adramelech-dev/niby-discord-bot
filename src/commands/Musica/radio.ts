@@ -1,7 +1,7 @@
-import { Command } from '../../structures/Command';
-import Client from '../../structures/Client';
-import music from '../../config/music';
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
+import music from '@/config/music';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
 import {
    ActionRowBuilder,
    ButtonBuilder,
@@ -37,7 +37,6 @@ export default {
       const rows = radioMap.map((r, index) => {
          return new ActionRowBuilder().addComponents(
             new StringSelectMenuBuilder()
-               // @ts-ignore
                .setCustomId(`RadioSelection${index}`)
                .setMaxValues(1)
                .setMinValues(1)
@@ -186,7 +185,7 @@ export default {
                         .setStyle(TextInputStyle.Short);
 
                      const MODAL_ROW = new ActionRowBuilder().addComponents(MODAL_PAGE_OPTION);
-                     // @ts-ignore
+                     // @ts-expect-error
                      MODAL.addComponents(MODAL_ROW);
 
                      await b?.showModal(MODAL);
@@ -242,9 +241,9 @@ export default {
             .edit(message, radioMsg, {
                ...messages[paginaActual],
                content:
-               // @ts-ignore
+               // @ts-expect-error
                   lastSelected && lastSelected.values
-               // @ts-ignore
+               // @ts-expect-error
                      ? `${client.allemojis.yes} **\`${lastSelected.values}\`**`
                      : client.translate(guildData.language, 'UTILS.MESSAGE.PAGINATION.collector.expire'),
                components: client.utils.message.disableComponents(messages[paginaActual]),

@@ -1,11 +1,11 @@
 import { PermissionResolvable } from 'discord.js';
-import { CommandCooldown, isNsfwCategory, isPrivateCategory, isPremiumCategory } from '../typings/command';
-import { Locale } from '../typings/locales';
-import Client from './Client';
-import categories from '../config/categories';
-import { SubCategory } from './SubCategory';
-import LocaleUtils from './utils/LocaleUtils';
-import EmojiList from '../config/EmojiList';
+import { CommandCooldown, isNsfwCategory, isPrivateCategory, isPremiumCategory } from '@/typings/command';
+import { Locale } from '@/typings/locales';
+import Client from '@/structures/Client';
+import categories from '@/config/categories';
+import { SubCategory } from '@/structures/SubCategory';
+import LocaleUtils from '@/structures/utils/LocaleUtils';
+import EmojiList from '@/config/EmojiList';
 interface Options {
    name: string;
    langKey?: string;

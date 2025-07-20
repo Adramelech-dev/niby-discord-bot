@@ -1,10 +1,10 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ModalBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
-import help, { getHelpMessage, buildCategoryEmbeds } from '../../../commands/Info/Bot/help';
-import Client from '../../../structures/Client';
-import { Category } from '../../../structures/Category';
-import { SubCategory } from '../../../structures/SubCategory';
-import { ErrorEmbed } from '../../../extenders/discord/Embed';
-import { Component } from '../../../typings/component';
+import help, { getHelpMessage, buildCategoryEmbeds } from '@/commands/Info/Bot/help';
+import Client from '@/structures/Client';
+import { Category } from '@/structures/Category';
+import { SubCategory } from '@/structures/SubCategory';
+import { ErrorEmbed } from '@/extenders/discord/Embed';
+import { Component } from '@/typings/component';
 export default {
    async execute(client: Client, interaction, args, guildData) {
       const executorId = args[0];
@@ -250,7 +250,7 @@ export default {
                         .setStyle(TextInputStyle.Short);
 
                      const MODAL_ROW = new ActionRowBuilder().addComponents(MODAL_PAGE_OPTION);
-                     // @ts-ignore
+                     // @ts-expect-error
                      MODAL.addComponents(MODAL_ROW);
                      await i?.showModal(MODAL);
                      await i

@@ -1,4 +1,3 @@
-const baseUrl = `${process.cwd()}/src/dashboard/views/`;
 import express from 'express';
 const router = express.Router();
 

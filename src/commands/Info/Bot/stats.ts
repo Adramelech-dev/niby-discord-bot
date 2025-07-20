@@ -1,6 +1,6 @@
-import { Embed } from '../../../extenders/discord/Embed';
-import Client from '../../../structures/Client';
-import { Command } from '../../../structures/Command';
+import { Embed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
+import { Command } from '@/structures/Command';
 
 export default {
    ALIASES: ['botstats', 'botinfo'],

@@ -1,6 +1,6 @@
 import { ColorResolvable } from 'discord.js';
-import { Locale } from '../src/typings/locales';
-import { PaypalMode } from '../src/structures/PaypalManager';
+import { Locale } from '@/typings/locales';
+import { PaypalMode } from '@/structures/PaypalManager';
 declare global {
    // eslint-disable-next-line @typescript-eslint/no-namespace
    namespace NodeJS {

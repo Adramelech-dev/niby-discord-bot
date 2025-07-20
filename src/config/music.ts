@@ -1,16 +1,16 @@
 export default {
    nodes: [
       {
-         authorization: 'youshallnotpass',
-         host: '127.0.0.1',
-         port: 2333,
+         authorization: process.env.LAVALINK_PASSWORD || 'youshallnotpass',
+         host: process.env.LAVALINK_HOST || '127.0.0.1',
+         port: Number(process.env.LAVALINK_PORT) || 2333,
          secure: false,
          id: 'localhost-node',
       },
    ],
    defaultVolume: 100,
    defaultLeaveTimeout: 300_000, // 5 mins
-   defaultSearchPlatform: 'youtubemusic', // ytmsearch ytsearch sp, spotify, sc, soundcloud, deezer, pornhub, twitch..
+   defaultSearchPlatform: 'sc', // ytmsearch ytsearch sp, spotify, sc, soundcloud, deezer, twitch..
    allowYoutube: true, // ytmsearch ytsearch sp, spotify, sc, soundcloud, deezer
    defaultAutoplay: true, // ytmsearch ytsearch sp, spotify, sc, soundcloud, deezer
    defaultPlayingMessage: true, // ytmsearch ytsearch sp, spotify, sc, soundcloud, deezer

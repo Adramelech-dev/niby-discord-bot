@@ -1,6 +1,6 @@
 import colors from 'colors';
 import { WebhookClient, ColorResolvable } from 'discord.js';
-import { Embed } from '../extenders/discord/Embed';
+import { Embed } from '@/extenders/discord/Embed';
 import fs from 'fs';
 
 type LogLevel = 'success' | 'error' | 'warn' | 'info' | 'log' | 'debug' | 'table';

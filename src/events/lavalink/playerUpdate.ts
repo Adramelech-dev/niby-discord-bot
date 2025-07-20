@@ -1,5 +1,5 @@
 import { EQBand, FilterData, Player, PlayerOptions, RepeatMode } from 'lavalink-client';
-import LavalinkManager from '../../structures/LavalinkManager';
+import LavalinkManager from '@/structures/LavalinkManager';
 export interface PlayerCacheJson {
    options: PlayerOptions; // El tipo de options dependerá de su estructura
    voiceChannelId: string;

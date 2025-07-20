@@ -1,4 +1,4 @@
-import Client from "../structures/Client";
+import Client from '@/structures/Client';
 
 export default (client:Client) => {
    if(client.cache.get("loadedAntiCrash")) return;

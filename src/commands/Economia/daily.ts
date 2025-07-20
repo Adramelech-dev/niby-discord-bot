@@ -1,7 +1,7 @@
-import { ClaimType, IUser } from '../../database/schemas/UserSchema';
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
-import Client from '../../structures/Client';
-import { Command } from '../../structures/Command';
+import { ClaimType, IUser } from '@/database/schemas/UserSchema';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
+import { Command } from '@/structures/Command';
 
 export default {
    DESCRIPTION: 'Reclama tu recompensa de monedas diarias',

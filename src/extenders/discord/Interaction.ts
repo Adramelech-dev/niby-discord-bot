@@ -15,7 +15,7 @@ const interactions = [CommandInteraction, MessageComponentInteraction, ModalSubm
 interactions.forEach((interactionClass) => {
    const originalReply = interactionClass.prototype.reply;
    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-   // @ts-ignore
+   // @ts-expect-error
    interactionClass.prototype.reply = function (...args) {
       return originalReply.apply(this, ensureEphemeral(args));
    };

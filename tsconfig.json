@@ -18,6 +18,10 @@
       "skipDefaultLibCheck": true,
       "allowSyntheticDefaultImports": true,
       "removeComments": true,
+      "paths": {
+         "@/*": ["./src/*"],
+         "@root/*": ["./*"],
+      },
    },
    "exclude": [
       "node_modules",

@@ -1,9 +1,9 @@
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
-import GiveawaySchema from '../../database/schemas/GiveawaySchema';
+import GiveawaySchema from '@/database/schemas/GiveawaySchema';
 import { GiveawayData } from 'discord-giveaways';
-import Client from '../../structures/Client';
-import { Command } from '../../structures/Command';
+import Client from '@/structures/Client';
+import { Command } from '@/structures/Command';
 export default {
    OPTIONS: [
       {
@@ -88,7 +88,7 @@ export default {
                            .setEmoji(guildData.giveaway.emoji),
                      ]),
                   ],
-                  // @ts-ignore
+                  // @ts-expect-error
                   allowedMentions: { parse: ['users'] },
                   replyToGiveaway: true,
                },
@@ -106,7 +106,7 @@ export default {
                            .setEmoji(guildData.giveaway.emoji),
                      ]),
                   ],
-                  // @ts-ignore
+                  // @ts-expect-error
                   allowedMentions: { parse: ['users'] },
                   replyToGiveaway: true,
                },

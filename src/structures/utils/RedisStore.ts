@@ -25,12 +25,11 @@ export default class RedisStore implements QueueStoreManager {
    parse(stringifiedQueueData): Promise<Partial<StoredQueue>> {
       return JSON.parse(stringifiedQueueData);
    }
-   // @ts-ignore
    // eslint-disable-next-line require-await
    async stringify(parsedQueueData): Promise<any> {
       return JSON.stringify(parsedQueueData);
    }
-   // you can add more utils if you need to...
+
    private id(guildId) {
       return `lavalinkqueue_${guildId}`; // transform the id
    }

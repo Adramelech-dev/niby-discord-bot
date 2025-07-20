@@ -1,8 +1,8 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, GuildChannel, GuildMember, Role } from 'discord.js';
-import { ErrorEmbed } from '../../extenders/discord/Embed';
-import Client from '../../structures/Client';
-import { Locale } from '../../typings/locales';
-import loadFiles from '../../utils/loadFiles';
+import { ErrorEmbed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
+import { Locale } from '@/typings/locales';
+import loadFiles from '@/utils/loadFiles';
 import os from 'node-os-utils';
 export default class GeneralUtils {
    client: Client;
@@ -100,23 +100,21 @@ export default class GeneralUtils {
    }
 
    toCodePoint(unicodeSurrogates, sep?) {
-      let // @ts-ignore
+      let
          // eslint-disable-next-line prefer-const
-         r = [],
+         r:string[] = [],
          c = 0,
          p = 0,
          i = 0;
       while (i < unicodeSurrogates.length) {
          c = unicodeSurrogates.charCodeAt(i++);
          if (p) {
-            // @ts-ignore
             // eslint-disable-next-line no-bitwise
             r.push((0x10000 + ((p - 0xd800) << 10) + (c - 0xdc00)).toString(16));
             p = 0;
          } else if (0xd800 <= c && c <= 0xdbff) {
             p = c;
          } else {
-            // @ts-ignore
             r.push(c.toString(16));
          }
       }
@@ -489,8 +487,7 @@ export default class GeneralUtils {
             return;
          }
 
-         // @ts-ignore
-         const searchParams = foundApi.params ? new URLSearchParams(foundApi.params) : null;
+         const searchParams = foundApi && foundApi.params ? new URLSearchParams(foundApi.params) : null;
          const apiUrl = `${foundApi!.apiUrl}${
             searchParams ? `?${searchParams}` : `/${foundApi!.aliases?.[type] ? foundApi!.aliases[type] : type}`
          }`;

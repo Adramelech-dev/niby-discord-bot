@@ -1,6 +1,6 @@
-import { Embed, ErrorEmbed } from '../../../extenders/discord/Embed';
-import Client from '../../../structures/Client';
-import { Command } from '../../../structures/Command';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
+import { Command } from '@/structures/Command';
 
 const map = {
    a: '\u0250',
@@ -127,10 +127,10 @@ export default {
          const str = args.join(' ');
          const c: string[] = [];
          for (let a, d = 0, e = str.length; d < e; d++) {
-            (a = str.charAt(d)),
+            (a = str.charAt(d))
                d > 0 && (a == '\u0324' || a == '\u0317' || a == '\u0316' || a == '\u032e')
                   ? ((a = map[str.charAt(d - 1) + a]), c.pop())
-                  : ((a = map[a]), typeof a == 'undefined' && (a = str.charAt(d))),
+                  : ((a = map[a]), typeof a == 'undefined' && (a = str.charAt(d)))
                c.push(a);
          }
          return c.reverse().join('');

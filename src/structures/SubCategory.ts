@@ -1,7 +1,7 @@
-import Client from './Client';
-import { Category } from './Category';
-import LocaleUtils from './utils/LocaleUtils';
-import { Locale } from '../typings/locales';
+import Client from '@/structures/Client';
+import { Category } from '@/structures/Category';
+import LocaleUtils from '@/structures/utils/LocaleUtils';
+import { Locale } from '@/typings/locales';
 interface Options {
    name: string;
    parentCategory: Category;

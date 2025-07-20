@@ -1,5 +1,6 @@
 import {
    ActionRowBuilder,
+   AnyComponentBuilder,
    ButtonBuilder,
    ButtonStyle,
    GuildMember,
@@ -8,15 +9,15 @@ import {
    TextChannel,
    VoiceChannel,
 } from 'discord.js';
-import { CustomRequester } from '../../typings/music';
-import Client from '../Client';
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
-import { Locale } from '../../typings/locales';
+import { CustomRequester } from '@/typings/music';
+import Client from '@/structures/Client';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
+import { Locale } from '@/typings/locales';
 import { AudioOutputs, Player, Queue, RepeatMode, SearchResult, SourceLinksRegexes, Track } from 'lavalink-client';
-import music from '../../config/music';
+import music from '@/config/music';
 import undici from 'undici';
 import { JSDOM } from 'jsdom';
-import { IDJSettings, IGuild } from '../../database/schemas/GuildSchema';
+import { IDJSettings, IGuild } from '@/database/schemas/GuildSchema';
 
 export default class MusicUtils {
    client: Client;
@@ -76,15 +77,15 @@ export default class MusicUtils {
       return `00:${this.formatInt(seconds)}`;
    }
 
-   async setAudioOutput(ctx, output, player, language = process.env.LANGUAGE) {
-      await player.filterManager.setAudioOutput(output as AudioOutputs);
+   async setAudioOutput(ctx, output: AudioOutputs, player: Player, language: Locale = process.env.LANGUAGE) {
+      await player.filterManager.setAudioOutput(output);
 
       return ctx.reply({
          embeds: [new Embed().setDescription(this.client.translate(language, `UTILS.MUSIC.output.set`, { output }))],
       });
    }
 
-   async setFilter(ctx, filter, player, language = process.env.LANGUAGE) {
+   async setFilter(ctx, filter: string, player: Player, language: Locale = process.env.LANGUAGE) {
       await player.filterManager?.[`toggle${filter}`]?.();
 
       return ctx.reply({
@@ -92,7 +93,7 @@ export default class MusicUtils {
       });
    }
 
-   isPlaying(ctx, player: Player, prefix, language = process.env.LANGUAGE): boolean {
+   isPlaying(ctx, player: Player, prefix:string, language:string = process.env.LANGUAGE): boolean {
       if (!player || !player?.playing)
          return (
             ctx.reply({
@@ -123,8 +124,7 @@ export default class MusicUtils {
       )
          return true;
       const DJ_ROLES = DJ_SETTINGS.roles;
-      // @ts-ignore
-      const memberRoles = member._roles;
+      const memberRoles = member.roles.cache.map((r) => r.id);
       if (!memberRoles.some((rId) => DJ_ROLES.includes(rId)))
          return (
             ctx.reply({
@@ -259,7 +259,7 @@ export default class MusicUtils {
       const textChannel = this.client.channels.cache.get(player.textChannelId!) as TextChannel;
 
       if (playingMessageMap && textChannel) {
-         // @ts-ignore
+         // @ts-expect-error
          return playingMessageMap.edit({ components: this.getComponents(player) }).catch(() => {});
       }
    }
@@ -828,7 +828,7 @@ export default class MusicUtils {
          });
    }
 
-   getComponents(player: Player) {
+   getComponents(player: Player): ActionRowBuilder<AnyComponentBuilder>[] {
       const COMPONENTS = [
          new ActionRowBuilder().addComponents([
             new ButtonBuilder().setEmoji(this.client.allemojis.favourite).setStyle(ButtonStyle.Secondary).setCustomId('music-{FAV_SONG}'),

@@ -1,9 +1,9 @@
 import { ActionRowBuilder, AnyComponentBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
-import { Embed } from '../../../extenders/discord/Embed';
-import Client from '../../../structures/Client';
-import { Command } from '../../../structures/Command';
-import { validSearchPlatforms } from '../../Musica/play';
-import music from '../../../config/music';
+import { Embed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
+import { Command } from '@/structures/Command';
+import { validSearchPlatforms } from '@/commands/Musica/play';
+import music from '@/config/music';
 export default {
    PERMISSIONS: ['ManageGuild'],
    BOT_PERMISSIONS: ['ManageGuild'],
@@ -34,7 +34,6 @@ export default {
          embeds: [
             new Embed().addField(
                client.translate(guildData.language, `${this.LANG_KEY}.select.name`, {
-                  // @ts-ignore
                   platformEmoji: client.allemojis[guildData.music.searchPlatform] || client.allemojis.link,
                   platformName: validSearchPlatforms[guildData.music.searchPlatform || music.defaultSearchPlatform],
                }),
@@ -66,37 +65,34 @@ export default {
 
       collector.on('end', (collected) => {
          const lastSelected = Array.from(collected?.values()).pop();
-         // @ts-ignore
+         // @ts-expect-error
          const labelSelected = validSearchPlatforms[lastSelected?.customId];
          // Desactivamos los botones y editamos el mensaje
          return client.utils.message
             .edit(message, selectPlatformMsg, {
                content:
-                  // @ts-ignore
                   lastSelected && labelSelected
-                     ? // @ts-ignore
+                     ?
                        `${client.allemojis.yes} **\`${labelSelected}\`**`
                      : client.translate(guildData.language, 'UTILS.MESSAGE.PAGINATION.collector.expire'),
-               // @ts-ignore
                components:
                   lastSelected && labelSelected
-                     ? // @ts-ignore
+                     ? // @ts-expect-error
                        client.utils.message.disableComponents(getPlatformComponents(lastSelected.customId).slice(0, 5))
                      : client.utils.message.disableComponents(selectPlatformMsg),
 
                embeds:
-                  // @ts-ignore
                   lastSelected && labelSelected
-                     ? // @ts-ignore
+                     ?
                        [
                           new Embed().addField(
                              client.translate(guildData.language, `${this.LANG_KEY}.selected.name`, {
-                                // @ts-ignore
+                                // @ts-expect-error
                                 platformEmoji: client.allemojis[lastSelected.customId] || client.allemojis.link,
                                 platformName: labelSelected,
                              }),
                              client.translate(guildData.language, `${this.LANG_KEY}.selected.value`, {
-                                // @ts-ignore
+                                // @ts-expect-error
                                 current: `${client.allemojis[lastSelected.customId] || client.allemojis.link} ${labelSelected}`,
                              }),
                           ),

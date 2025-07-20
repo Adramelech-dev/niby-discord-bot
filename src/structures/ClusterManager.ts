@@ -9,6 +9,7 @@ import { Collection } from 'discord.js';
 const mode: ClusterManagerMode =
    process.env.SHARDING_MODE === 'worker' || process.env.SHARDING_MODE === 'process' ? process.env.SHARDING_MODE : 'worker';
 
+
 const DefaultClusterOptions: ClusterManagerOptions = {
    totalShards: Number(process.env.TOTAL_SHARDS) || 'auto',
    shardsPerClusters: Number(process.env.SHARDS_PER_CLUSTER) || 1,
@@ -17,7 +18,6 @@ const DefaultClusterOptions: ClusterManagerOptions = {
    respawn: true,
 };
 
-// Ahora puedes usar parentDir en tu ruta
 export default class ClusterManager extends DefaultClusterManager {
    events: Collection<string, Event> = new Collection();
    constructor(path: string, options: ClusterManagerOptions = DefaultClusterOptions) {

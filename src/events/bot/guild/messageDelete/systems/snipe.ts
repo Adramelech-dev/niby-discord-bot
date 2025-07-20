@@ -1,6 +1,6 @@
 import { Message, UserFlags } from 'discord.js';
-import Client from '../../../../../structures/Client';
-import { System } from '../../../../../typings/system';
+import Client from '@/structures/Client';
+import { System } from '@/typings/system';
 
 export default {
    execute(client: Client, guildData, userData, deletedMessage: Message) {

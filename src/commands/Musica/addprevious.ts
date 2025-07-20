@@ -1,6 +1,6 @@
-import { Command } from '../../structures/Command';
-import Client from '../../structures/Client';
-import { ErrorEmbed } from '../../extenders/discord/Embed';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
+import { ErrorEmbed } from '@/extenders/discord/Embed';
 
 export default {
    execute(client: Client, message, args, prefix, guildData, userData, player) {

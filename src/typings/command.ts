@@ -1,6 +1,6 @@
 import { Collection } from 'discord.js';
-import { Command } from '../structures/Command';
-import categories from '../config/categories';
+import { Command } from '@/structures/Command';
+import categories from '@/config/categories';
 
 export interface CommandCooldown {
    user: Collection<string, Collection<string, number>>;

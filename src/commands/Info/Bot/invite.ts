@@ -1,6 +1,6 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
-import { Embed } from "../../../extenders/discord/Embed";
-import { Command } from "../../../structures/Command";
+import { Embed } from '@/extenders/discord/Embed';
+import { Command } from '@/structures/Command';
 
 export default {
     ALIASES: ["invitar", "botinvite", "invitebot"],

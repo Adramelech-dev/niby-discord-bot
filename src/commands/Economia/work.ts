@@ -1,7 +1,7 @@
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
-import { Command } from '../../structures/Command';
-import Client from '../../structures/Client';
-import { ClaimType, IUser } from '../../database/schemas/UserSchema';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
+import { ClaimType, IUser } from '@/database/schemas/UserSchema';
 
 export default {
    DESCRIPTION: 'Reclama tu recompensa de monedas mensuales',
@@ -67,6 +67,5 @@ export default {
             ],
          });
 
-      // @ts-ignore
    },
 } as Command;

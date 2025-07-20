@@ -1,11 +1,10 @@
-import { Embed, ErrorEmbed } from '../../../extenders/discord/Embed';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
 import { ActionRowBuilder, Collection, StringSelectMenuBuilder } from 'discord.js';
-import Client from '../../../structures/Client';
-import { Command } from '../../../structures/Command';
-import { Category } from '../../../structures/Category';
-import { SubCategory } from '../../../structures/SubCategory';
-import EmojiList from '../../../config/EmojiList';
-// @ts-ignore
+import Client from '@/structures/Client';
+import { Command } from '@/structures/Command';
+import { Category } from '@/structures/Category';
+import { SubCategory } from '@/structures/SubCategory';
+import EmojiList from '@/config/EmojiList';
 import {version} from '../../../../package.json'
 export default {
    ALIASES: ['h', 'ayuda', 'bothelp'],
@@ -132,7 +131,6 @@ export function buildCategoryEmbeds(
    const embeds: Embed[] = [];
 
    const texts:TextOptions[] = CATEGORIAS.map((CATEGORIA) => {
-      // @ts-ignore
       const COMANDOS_CATEGORIA = commands.filter((c) => c.CATEGORY?.DEFAULT_NAME == CATEGORIA.DEFAULT_NAME);
 
       const PARENT_CATEGORY = CATEGORIA.PARENT_CATEGORY;

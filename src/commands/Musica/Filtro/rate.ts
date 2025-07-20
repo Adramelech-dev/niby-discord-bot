@@ -1,7 +1,7 @@
 import { Player } from 'lavalink-client';
-import Client from '../../../structures/Client';
-import { Command } from '../../../structures/Command';
-import { Embed, ErrorEmbed } from '../../../extenders/discord/Embed';
+import Client from '@/structures/Client';
+import { Command } from '@/structures/Command';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
 
 export default {
    OPTIONS: [
@@ -13,7 +13,7 @@ export default {
    ],
    USAGE: "<Cantidad>",
    async execute(client: Client, message, args, prefix, guildData, userData, player:Player) {
-      // @ts-ignore
+      
       if (!client.utils.music.isPlaying(message, player, prefix, guildData.language)) return;
       // Not allowed? return
       if (!client.utils.music.isAllowedToAction(message, this.NAME, guildData)) return;

@@ -1,6 +1,15 @@
+> [!WARNING]  
+> This project is no longer maintained as of 2023.
+>
+> Last updated on **July 2023** | Released to open source in 2025 for contributions.
+>
+> Only minimal updates will be made to maintain the deployment and basic functionality.
+
+<br />
+
 <div align="center">
  <a href="https://github.com/dewstouh/niby-discord-bot/actions" target="_blank"><img src="https://img.shields.io/github/actions/workflow/status/dewstouh/niby-discord-bot/ci.yml?branch=main&style=for-the-badge&label=CI" alt="CI Status" /></a>
- <a href="https://discord.gg/MBPsvcphGf" target="_blank"><img src="https://img.shields.io/maintenance/yes/2025?style=for-the-badge&label=MAINTAINED" /></a>
+ <a href="https://discord.gg/MBPsvcphGf" target="_blank"><img src="https://img.shields.io/maintenance/yes/2023?style=for-the-badge&label=MAINTAINED" /></a>
  <a href="https://discord.gg/MBPsvcphGf" target="_blank"><img src="https://img.shields.io/discord/879397504075063297?color=blue&label=support&style=for-the-badge&logoColor=white" /></a>
  <a href="https://github.com/sponsors/dewstouh" target="_blank"><img src="https://img.shields.io/badge/Sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AAA"/></a>
  <a href="https://paypal.me/elmundodeniby" target="_blank"><img src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white"/></a>
@@ -10,6 +19,9 @@
  <a href="https://www.nodejs.org" target="_blank"><img src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white"/></a>
  <a href="https://expressjs.com/" target="_blank"><img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white"/></a>
  <a href="https://github.com/mashpie/i18n-node" target="_blank"><img src="https://img.shields.io/badge/i18n-Multilingual-blue?style=for-the-badge&logo=translate&logoColor=white"/></a>
+<a href="https://hub.docker.com/r/dewstouh/niby-discord-bot" target="_blank">
+  <img src="https://img.shields.io/badge/Docker%20Image%20-blue?style=for-the-badge&logo=docker&logoColor=white" />
+</a>
 
 </div>
 
@@ -80,7 +92,13 @@ Advanced moderation, a **premium music system** including sources like **Spotify
   - [✍ Setup](#-setup)
     - [☑️ Requirements](#️-requirements)
     - [📋 Installation](#-installation)
+    - [🐳 Using Docker](#-using-docker)
+      - [Dockerfile](#dockerfile)
+      - [Docker Compose](#docker-compose)
     - [⚙️ Configuration](#️-configuration)
+    - [🗄️ Caching](#️-caching)
+      - [Before and after cache](#before-and-after-cache)
+    - [🛠️ Auto Recovery Music System](#️-auto-recovery-music-system)
     - [🔨 Creating Commands (HYBRID)](#-creating-commands-hybrid)
       - [💬 Prefix Commands](#-prefix-commands)
     - [🔲 Creating Context Menus](#-creating-context-menus)
@@ -125,6 +143,40 @@ git clone https://github.com/dewstouh/niby-discord-bot
 ```bash
 npm install
 ```
+
+### 🐳 Using Docker
+
+#### Dockerfile
+There is a script inside `package.json` to build the Docker image, you can use it with the following command:
+```bash
+npm run docker:build
+```
+
+https://github.com/user-attachments/assets/9e2f1fb7-16d9-4d6e-bb5f-6d1b89c51568
+
+And then you can run it using
+```bash
+npm run docker:run
+```
+
+Or stop it and remove it using
+```bash
+npm run docker:stop
+npm run docker:rm
+```
+
+#### Docker Compose
+
+You must configure the environment variables in the docker compose for the `BOT_TOKEN` and `CLIENT_SECRET` *(optional a dashboard is going to be used)*
+
+```bash
+docker-compose up -d
+```
+
+https://github.com/user-attachments/assets/17afa27f-054c-499e-8886-cb74460689fc
+
+> ⚠️ If you want to use Docker, you must have Docker and Docker Compose installed on your system. You can find the installation instructions in the [Docker documentation](https://docs.docker.com/get-docker/) and [Docker Compose documentation](https://docs.docker.com/compose/install/).
+
 
 ### ⚙️ Configuration
 
@@ -172,6 +224,28 @@ PORT = 3000
 > A file called `.env.test` is also included, which serves to start the bot with an exclusive configuration for __testing__ or __development__ without affecting the main configuration.
 
 When you have the bot configured and its modules installed, you can turn it on using `npm run start` or if you want to turn it on in development mode you can use `npm run dev`.
+
+> [!NOTE]  
+> The development command runs the compiled bot, this is due to discord-hybrid-sharding not supporting ts files, so you must compile the bot before running it in development mode, for hot-reload functionality please use the `/reload` command.
+
+### 🗄️ Caching
+Niby uses Redis for caching the database and general bot data, this allows for a **faster response time** and **reduced load on the database**.
+
+#### Before and after cache
+
+- **Before:**
+   > ![](https://i.imgur.com/iNPfbgs.png)
+
+- **After:**
+   > ![](https://i.imgur.com/yMBACwT.png)
+
+### 🛠️ Auto Recovery Music System
+Niby has an auto recovery music system that allows you to recover the music playback in case of a crash or unexpected shutdown. This system will automatically resume the last played track when the bot is restarted.
+
+Here is an example:
+
+https://github.com/user-attachments/assets/9febe4e3-3b1e-4749-b84e-25bc70764e65
+
 
 ### 🔨 Creating Commands (HYBRID)
 

@@ -1,8 +1,8 @@
-import { LavalinkManager as DefaultLavalinkManager, DefaultQueueStore, ManagerOptions } from 'lavalink-client';
-import Client from './Client';
-import RedisStore from './utils/RedisStore';
-import RedisWatcher from './utils/CustomWatcher';
-import music from '../config/music';
+import { LavalinkManager as DefaultLavalinkManager, DefaultQueueStore, LavalinkManagerEvents, ManagerOptions, NodeManagerEvents } from 'lavalink-client';
+import Client from '@/structures/Client';
+import RedisStore from '@/structures/utils/RedisStore';
+import RedisWatcher from '@/structures/utils/CustomWatcher';
+import music from '@/config/music';
 import path from 'path';
 
 export default class LavalinkManager extends DefaultLavalinkManager {
@@ -65,10 +65,8 @@ export default class LavalinkManager extends DefaultLavalinkManager {
                PULL.PATH = ruta;
                PULL.LANG_KEY = `EVENTS.${PULL_NAME}.execute`;
                const EVENT_NAME = PULL_NAME;
-               // @ts-ignore
-               if (ruta.includes('lavalink') && !ruta.includes('nodeManager')) this.on(PULL_NAME, PULL.bind(null, this));
-               // @ts-ignore
-               else if (ruta.includes('lavalink') && ruta.includes('nodeManager')) this.nodeManager.on(PULL_NAME, PULL.bind(null, this));
+               if (ruta.includes('lavalink') && !ruta.includes('nodeManager')) this.on(PULL_NAME as keyof LavalinkManagerEvents, PULL.bind(null, this));
+               else if (ruta.includes('lavalink') && ruta.includes('nodeManager')) this.nodeManager.on(PULL_NAME as keyof NodeManagerEvents, PULL.bind(null, this));
 
                const eventSystemsPath = RUTA_SISTEMAS.filter((p) => p.includes(PULL_NAME));
                if (eventSystemsPath.length) {

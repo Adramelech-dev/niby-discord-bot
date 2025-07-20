@@ -1,6 +1,6 @@
-import { Embed } from '../../../extenders/discord/Embed';
-import { Command } from '../../../structures/Command';
-import Client from '../../../structures/Client';
+import { Embed } from '@/extenders/discord/Embed';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
 
 export default {
    ALIASES: ['botmemory', 'ram', 'botram'],

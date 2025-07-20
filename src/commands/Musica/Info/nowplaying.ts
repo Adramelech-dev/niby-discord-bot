@@ -1,8 +1,8 @@
 import { Player } from 'lavalink-client';
-import { Command } from '../../../structures/Command';
-import Client from '../../../structures/Client';
-import { Embed } from '../../../extenders/discord/Embed';
-import { CustomRequester } from '../../../typings/music';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
+import { Embed } from '@/extenders/discord/Embed';
+import { CustomRequester } from '@/typings/music';
 import { ButtonStyle, ActionRowBuilder, ButtonBuilder } from 'discord.js';
 
 export default {

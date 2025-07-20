@@ -1,7 +1,7 @@
-import { Command } from '../../../structures/Command';
-import { Embed } from '../../../extenders/discord/Embed';
-import Client from '../../../structures/Client';
-import UserSchema from '../../../database/schemas/UserSchema';
+import { Command } from '@/structures/Command';
+import { Embed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
+import UserSchema from '@/database/schemas/UserSchema';
 const medallas = {
    1: '🥇',
    2: '🥈',

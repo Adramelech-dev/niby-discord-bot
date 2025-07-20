@@ -6,13 +6,13 @@ import {
    isPremiumCategory,
    isUserPremiumCategory,
    isGuildPremiumCategory,
-} from '../typings/command';
-import { execute } from '../typings/execute';
-import { Locale } from '../typings/locales';
-import Client from './Client';
-import { Category } from './Category';
-import { SubCategory } from './SubCategory';
-import LocaleUtils from './utils/LocaleUtils';
+} from '@/typings/command';
+import { execute } from '@/typings/execute';
+import { Locale } from '@/typings/locales';
+import Client from '@/structures/Client';
+import { Category } from '@/structures/Category';
+import { SubCategory } from '@/structures/SubCategory';
+import LocaleUtils from '@/structures/utils/LocaleUtils';
 
 interface Options {
    command: any;

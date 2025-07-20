@@ -1,6 +1,6 @@
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
-import Client from '../../structures/Client';
-import { Command } from '../../structures/Command';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
+import { Command } from '@/structures/Command';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 const execAsync = promisify(exec);

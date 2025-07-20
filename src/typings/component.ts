@@ -1,5 +1,5 @@
 import { PermissionResolvable } from 'discord.js';
-import { execute } from './execute';
+import { execute } from '@/typings/execute';
 
 export enum Components {
    'buttons' = 'btn',

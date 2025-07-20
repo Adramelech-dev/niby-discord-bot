@@ -1,5 +1,5 @@
 import fs from 'fs';
-import LocaleData from '../config/LocaleEmojis.json';
+import LocaleData from '../config/LocaleEmojis';
 
 const typeDeclarations = Object.entries(LocaleData).map(([key]) => `"${key}"`).join(" | ");
 

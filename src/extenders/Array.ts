@@ -1,4 +1,4 @@
-import addProperties from '../utils/addProperties';
+import addProperties from '@/utils/addProperties';
 
 addProperties(Array.prototype, {
    shuffle: function (this: Array<any>) {

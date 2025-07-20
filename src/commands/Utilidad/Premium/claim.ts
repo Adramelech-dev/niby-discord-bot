@@ -1,7 +1,7 @@
-import { Command } from '../../../structures/Command';
-import Client from '../../../structures/Client';
-import { Embed, ErrorEmbed } from '../../../extenders/discord/Embed';
-import PremiumKeySchema from '../../../database/schemas/PremiumKeySchema';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
+import PremiumKeySchema from '@/database/schemas/PremiumKeySchema';
 
 export default {
    OPTIONS: [

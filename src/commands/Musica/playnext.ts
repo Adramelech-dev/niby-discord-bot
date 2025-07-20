@@ -1,5 +1,5 @@
-import { Command } from '../../structures/Command';
-import Client from '../../structures/Client';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
 
 export default {
    OPTIONS: [

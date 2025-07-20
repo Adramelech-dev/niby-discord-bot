@@ -1,7 +1,7 @@
-import { Command } from '../../structures/Command';
+import { Command } from '@/structures/Command';
 import { GuildMember } from 'discord.js';
-import { Embed } from '../../extenders/discord/Embed';
-import Client from '../../structures/Client';
+import { Embed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
 
 export default {
    OPTIONS: [

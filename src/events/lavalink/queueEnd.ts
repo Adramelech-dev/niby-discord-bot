@@ -1,12 +1,11 @@
 import { Message, TextChannel } from 'discord.js';
-import { Embed } from '../../extenders/discord/Embed';
+import { Embed } from '@/extenders/discord/Embed';
 import { Player } from 'lavalink-client';
-import Client from '../../structures/Client';
-import LavalinkManager from '../../structures/LavalinkManager';
-import music from '../../config/music';
+import Client from '@/structures/Client';
+import LavalinkManager from '@/structures/LavalinkManager';
+import music from '@/config/music';
 
 export default async (manager: LavalinkManager, player: Player) => {
-   // @ts-ignore
    const client: Client = manager.client;
    if(player.get("247")) return;
    const textChannel = client.channels.cache.get(player.textChannelId!) as TextChannel;
@@ -34,7 +33,6 @@ export default async (manager: LavalinkManager, player: Player) => {
                player.set('noQueueMsg', null);
                player.set('noQueueTimeout', null);
                if (textChannel && NOQUEUE_MSG) {
-                  // @ts-ignore
                   const infoMessage = {
                      embeds: [
                         new Embed().addFields([

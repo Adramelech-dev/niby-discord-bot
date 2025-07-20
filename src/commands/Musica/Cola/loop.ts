@@ -1,7 +1,7 @@
-import { Command } from '../../../structures/Command';
-import Client from '../../../structures/Client';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
 import { Player, RepeatMode } from 'lavalink-client';
-import { ErrorEmbed } from '../../../extenders/discord/Embed';
+import { ErrorEmbed } from '@/extenders/discord/Embed';
 
 export default {
    USAGE: '<(pista|cola|off)?>',
@@ -21,8 +21,7 @@ export default {
       if (!client.utils.music.isAllowedToAction(message, this.NAME, guildData)) return;
 
       const loopMode = args[0]?.toLowerCase() as RepeatMode;
-      // @ts-ignore
-      
+
       const translatedObject = client.translate(guildData.language, `${this.LANG_PATH}.OPTIONS.0STRING_CHOICES.CHOICES`) // {off: "Desactivar", track: "Pista", queue: "Cola"};
       const loopModes = Object.keys(translatedObject) as string[];
       const translatedLoopModes = Object.values(translatedObject) as string[]; // ["Desactivar", "Pista", "Cola"]

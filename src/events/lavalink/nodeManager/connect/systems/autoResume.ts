@@ -1,7 +1,7 @@
 import { Queue } from 'lavalink-client';
-import { Embed } from '../../../../../extenders/discord/Embed';
-import Client from '../../../../../structures/Client';
-import { PlayerCacheJson } from '../../../playerUpdate';
+import { Embed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
+import { PlayerCacheJson } from '@/events/lavalink/playerUpdate';
 import { TextChannel, VoiceChannel } from 'discord.js';
 
 export default {

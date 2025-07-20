@@ -1,7 +1,7 @@
 import { ChatInputCommandInteraction, Message } from "discord.js";
-import { Embed } from "../../../extenders/discord/Embed";
-import Client from "../../../structures/Client";
-import { Command } from "../../../structures/Command";
+import { Embed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
+import { Command } from '@/structures/Command';
 
 export default {
    ALIASES: ['latency', 'ms'],

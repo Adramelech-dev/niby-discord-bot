@@ -1,4 +1,4 @@
-import addProperties from '../utils/addProperties';
+import addProperties from '@/utils/addProperties';
 
 addProperties(Number.prototype, {
    random: function (this: number, minPercentage = 0, maxPercentage = 100) {

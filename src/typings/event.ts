@@ -1,4 +1,4 @@
-import { execute } from "./execute";
+import { execute } from '@/typings/execute';
 
 export type Event = {
    execute: execute;

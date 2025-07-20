@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { QueueChangesWatcher } from "lavalink-client";
-import Client from "../Client";
+import Client from '@/structures/Client';
 
 export default class CustomWatcher implements QueueChangesWatcher {
    private client:Client;

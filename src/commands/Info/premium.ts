@@ -1,6 +1,6 @@
-import { Command } from '../../structures/Command';
-import Client from '../../structures/Client';
-import { Embed } from '../../extenders/discord/Embed';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
+import { Embed } from '@/extenders/discord/Embed';
 import { ButtonStyle, ActionRowBuilder, ButtonBuilder } from 'discord.js';
 
 export default {

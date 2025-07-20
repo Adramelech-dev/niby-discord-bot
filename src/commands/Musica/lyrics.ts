@@ -1,9 +1,9 @@
-import { Command } from '../../structures/Command';
-import Client from '../../structures/Client';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
 import { Player } from 'lavalink-client';
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
 import { EmbedBuilder } from 'discord.js';
-import music from '../../config/music';
+import music from '@/config/music';
 export default {
    OPTIONS: [
       {

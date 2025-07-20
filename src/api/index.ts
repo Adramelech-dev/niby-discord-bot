@@ -14,11 +14,12 @@ const server = http.createServer(app);
 const io = new Server(server);
 import flash from 'connect-flash';
 import rateLimit from 'express-rate-limit';
-import Client from '../structures/Client';
-import extractRoute from './utils/extractRoute';
-import loadFiles from '../utils/loadFiles';
-import texts, { premiumPlans } from './config';
-import socketHandler from './handlers/socketHandler';
+import Client from '@/structures/Client';
+import extractRoute from '@/api/utils/extractRoute';
+import loadFiles from '@/utils/loadFiles';
+import texts, { premiumPlans } from '@/api/config';
+import socketHandler from '@/api/handlers/socketHandler';
+import path from 'path';
 export default async (client: Client) => {
    console.info('Cargando dashboard...'.yellow);
 
@@ -26,6 +27,9 @@ export default async (client: Client) => {
 
    app.set('trust proxy', 1); // Si pasa por cloudflare, pillamos las IPs de la peña de verdad :)
    app.set('view engine', 'ejs'); // Esto establece EJS como el motor de plantillas por defecto
+   app.set('views', path.join(process.cwd(), 'web/views'));
+   app.set('view engine', 'ejs');
+   app.use(express.static(path.join(process.cwd(), 'web/public')));
 
    const limiter = rateLimit({
       windowMs: (parseInt(process.env.RATE_LIMIT_COOLDOWN) || 5) * 60 * 1000, // CONFIG minutos
@@ -74,7 +78,7 @@ export default async (client: Client) => {
    app.use(flash());
    // Global Variables
    app.use((req, res, next) => {
-      // @ts-ignore
+      // @ts-expect-error
       req.active = req.path.split('/')[1];
       res.locals.success = req.flash('success');
       res.locals.error = req.flash('error');
@@ -98,7 +102,7 @@ export default async (client: Client) => {
       }),
    );
 
-   app.use(express.static(`${process.cwd()}/src/dashboard/public`));
+   app.use(express.static(`${process.cwd()}/dist/api/public`));
    // app.use(express.static(path.join(__dirname, '/'), { dotfiles: 'allow' })); //static
 
    // PRIVATE API, NO ATTACKS + LIMITER
@@ -142,11 +146,11 @@ export default async (client: Client) => {
 
 async function loadRoutes() {
    console.log(`(+) Cargando routes`.yellow);
-   const RUTA_ARCHIVOS = await loadFiles('/src/dashboard/routes');
+   const RUTA_ARCHIVOS = await loadFiles('/src/api/routes');
    if (RUTA_ARCHIVOS.length) {
       for (const rutaArchivo of RUTA_ARCHIVOS) {
          try {
-            const BASE_PATH = __dirname.toString().slice(1) + '/dist/dashboard/routes';
+            const BASE_PATH = __dirname.toString().slice(1) + '/api/routes';
             const PATH = '/' + rutaArchivo.split('\\')[0].split('/').slice(1).join('/').split('.')[0].replace(BASE_PATH, '');
             if (PATH.endsWith('routes/index')) {
                app.use('/', (await import(rutaArchivo)).default);

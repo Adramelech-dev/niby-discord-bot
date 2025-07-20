@@ -1,5 +1,5 @@
-import Client from '../../../structures/Client';
-import { Component } from '../../../typings/component';
+import Client from '@/structures/Client';
+import { Component } from '@/typings/component';
 
 export default {
      execute(client: Client, interaction, args, guildData, userData) {

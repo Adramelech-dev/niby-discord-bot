@@ -1,6 +1,6 @@
-import { Command } from '../../structures/Command';
-import Client from '../../structures/Client';
-import music from '../../config/music';
+import { Command } from '@/structures/Command';
+import Client from '@/structures/Client';
+import music from '@/config/music';
 export const validSearchPlatforms = {
    "youtube": "Youtube",
    "spotify": "Spotify",

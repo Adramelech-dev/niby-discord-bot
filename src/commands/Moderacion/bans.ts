@@ -1,7 +1,7 @@
 import { GuildBan } from 'discord.js';
-import { Embed, ErrorEmbed } from '../../extenders/discord/Embed';
-import Client from '../../structures/Client';
-import { Command } from '../../structures/Command';
+import { Embed, ErrorEmbed } from '@/extenders/discord/Embed';
+import Client from '@/structures/Client';
+import { Command } from '@/structures/Command';
 export default {
    PERMISSIONS: ['ViewAuditLog'],
    BOT_PERMISSIONS: ['ViewAuditLog'],

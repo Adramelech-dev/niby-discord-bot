@@ -1,7 +1,7 @@
 import { Guild, Message, TextChannel } from 'discord.js';
 import { Player, Queue, Track } from 'lavalink-client';
-import Client from '../../structures/Client';
-import LavalinkManager from '../../structures/LavalinkManager';
+import Client from '@/structures/Client';
+import LavalinkManager from '@/structures/LavalinkManager';
 
 export default async (manager: LavalinkManager, player: Player, song: Track) => {
    const client: Client = manager.client;
@@ -31,8 +31,7 @@ export default async (manager: LavalinkManager, player: Player, song: Track) => 
       textChannel
          .send({
             embeds: [queueEmbed],
-            // @ts-ignore
-            components: queueComponents,
+            components: queueComponents.map(component => component.toJSON()),
          })
          .then((msg) => {
             player.set(`playingMsg`, msg);

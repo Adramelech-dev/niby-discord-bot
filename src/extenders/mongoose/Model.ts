@@ -7,14 +7,12 @@ if(process.env.CACHE_DB !== "true"){
   };
 }
 
-function findOrCreate(condition: object = {}, createWith: object = {}) {
+function findOrCreate(this: typeof mongoose.Model, condition: object = {}, createWith: object = {}) {
    return new Promise((resolve, reject) => {
-      // @ts-ignore
       this.findOne(condition)
          .cacheQuery()
          .then((data) => {
             if (!data) {
-               // @ts-ignore
                data = new this(createWith.isValid() ? createWith : condition);
                return data.save();
             }
@@ -29,9 +27,8 @@ function findOrCreate(condition: object = {}, createWith: object = {}) {
    });
 }
 
-function getRandom(condition: object = {}) {
+function getRandom(this: typeof mongoose.Model, condition: object = {}) {
    return new Promise((resolve, reject) => {
-      //@ts-ignore
       this.find(condition)
          .then((data) => {
             resolve(data.random());

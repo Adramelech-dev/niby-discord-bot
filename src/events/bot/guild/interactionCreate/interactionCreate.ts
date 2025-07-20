@@ -1,7 +1,7 @@
 import { Collection } from 'discord.js';
-import { SlashCMDHandler } from '../../../../handlers/CommandHandler';
-import Client from '../../../../structures/Client';
-import { ComponentHandler } from '../../../../handlers/ComponentHandler';
+import { SlashCMDHandler } from '@/handlers/CommandHandler';
+import Client from '@/structures/Client';
+import { ComponentHandler } from '@/handlers/ComponentHandler';
 
 export default async (client: Client, interaction) => {
    if (interaction.guildId && !interaction.guild) return;

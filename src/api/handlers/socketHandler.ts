@@ -1,5 +1,5 @@
-import Client from '../../structures/Client';
-import { getBotStats } from '../routes/status';
+import Client from '@/structures/Client';
+import { getBotStats } from '@/api/routes/status';
 
 export default (io, client: Client) => {
    // io.on('connection', (socket) => {

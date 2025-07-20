@@ -1,11 +1,10 @@
 import { Message, TextChannel } from 'discord.js';
-import { Embed } from '../../extenders/discord/Embed';
+import { Embed } from '@/extenders/discord/Embed';
 import { Player } from 'lavalink-client';
-import Client from '../../structures/Client';
-import LavalinkManager from '../../structures/LavalinkManager';
+import Client from '@/structures/Client';
+import LavalinkManager from '@/structures/LavalinkManager';
 
 export default async (manager: LavalinkManager, player: Player) => {
-   // @ts-ignore
    const client: Client = manager.client;
    const PLAYINGMSG_MAP = player.get('playingMsg') as Message;
    const GUILD_DATA = await client.db.getGuildData(player.guildId);
@@ -28,7 +27,6 @@ export default async (manager: LavalinkManager, player: Player) => {
             embeds: [
                new Embed()
                   .addField(
-                     // @ts-ignore
                      PLAYINGMSG_MAP.embeds[0].fields[0].name.replace(
                         `${client.allemojis.disk} ${client.translate(language, `UTILS.MUSIC.getPlayingEmbed.title`)}:`,
                         `${client.allemojis.yes} ${client.translate(language, `UTILS.MUSIC.getPlayingEmbed.ended`)}:`,
@@ -37,11 +35,9 @@ export default async (manager: LavalinkManager, player: Player) => {
                         Date.now() / 1000,
                      )}:R>`,
                   )
-                  // @ts-ignore
                   .setFooter(PLAYINGMSG_MAP?.embeds[0]?.footer)
-                  // @ts-ignore
                   .setColor(PLAYINGMSG_MAP?.embeds[0]?.color)
-                  // @ts-ignore
+                  // @ts-expect-error
                   .setThumbnail(PLAYINGMSG_MAP?.embeds[0]?.thumbnail?.url),
             ],
             components: client.utils.message.disableComponents(PLAYINGMSG_MAP),

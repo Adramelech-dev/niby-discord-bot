@@ -1,20 +1,20 @@
 import { applySpeedGooseCacheLayer, SpeedGooseCacheAutoCleaner } from 'speedgoose';
 import mongoose, { connect, plugin } from 'mongoose';
-import Client from '../structures/Client';
+import Client from '@/structures/Client';
 
-import loadFiles from '../utils/loadFiles';
+import loadFiles from '@/utils/loadFiles';
 // Load cache if enabled
 if (process.env.CACHE_DB == 'true') {
    applySpeedGooseCacheLayer(mongoose, {
       enabled: process.env.CACHE_DB == 'true',
-      redisUri: process.env.REDIS_URL,
+      redisUri: process.env.REDIS_URL || 'redis:6379',
    });
 
    plugin(SpeedGooseCacheAutoCleaner);
 }
 
-import GuildSchema, { IGuild } from './schemas/GuildSchema';
-import UserSchema, { IUser } from './schemas/UserSchema';
+import GuildSchema, { IGuild } from '@/database/schemas/GuildSchema';
+import UserSchema, { IUser } from '@/database/schemas/UserSchema';
 import { Locale } from 'discord.js';
 class Database {
    private client: Client; // Replace 'any' with your actual client type
@@ -29,7 +29,9 @@ class Database {
       new Promise((resolve, reject) => {
          this.loadPlugins()
             .then(() => {
-               connect(process.env.DATABASE_URL)
+               connect(process.env.DATABASE_URL || 'mongodb://niby-mongo:27017/niby-discord-bot', {
+                  autoIndex: true, // Create indexes automatically
+               })
                   .then(() => {
                      resolve(true);
                      console.success('Conectado a la base de datos de MongoDB'.blue);
@@ -53,7 +55,7 @@ class Database {
       console.success(`${mongoosePlugins.length} plugin${mongoosePlugins.length == 1 ? '' : 's'} cargados!`);
    }
 
-   getGuildData(guildId: string, language = process.env.LANGUAGE):IGuild {
+   getGuildData(guildId: string, language:string = process.env.LANGUAGE):IGuild {
       if(!language || !(language in Locale)) language = process.env.LANGUAGE;
       return GuildSchema.findOrCreate({ guildId }, {guildId, language});
    }
