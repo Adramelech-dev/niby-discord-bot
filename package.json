@@ -6,12 +6,13 @@
   "scripts": {
     "build": "tsc && tsc-alias",
     "start": "dotenvx run -f .env.production -- node dist/index.js",
-    "dev": "dotenvx run -f .env -- node dist/index.js",
+    "dev": "dotenvx run -f .env.local -- node dist/index.js",
     "clean": "rm -r dist",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "docker:build": "docker build -t niby-discord-bot -f docker/images/niby/Dockerfile .",
     "docker:run": "docker run -d --name niby-discord-bot --env-file .env -p 3000:3000 niby-discord-bot",
+   "docker:restart": "docker restart niby-discord-bot",
     "docker:logs": "docker logs -f niby-discord-bot",
     "docker:stop": "docker stop niby-discord-bot",
     "docker:rm": "docker rm niby-discord-bot"
