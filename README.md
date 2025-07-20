@@ -233,16 +233,17 @@ Niby uses Redis for caching the database and general bot data, this allows for a
 
 #### Before and after cache
 
-**Before:**
-> ![](https://i.imgur.com/iNPfbgs.png)
+- **Before:**
+   > ![](https://i.imgur.com/iNPfbgs.png)
 
-**After:**
-> ![](https://i.imgur.com/yMBACwT.png)
+- **After:**
+   > ![](https://i.imgur.com/yMBACwT.png)
 
 ### 🛠️ Auto Recovery Music System
 Niby has an auto recovery music system that allows you to recover the music playback in case of a crash or unexpected shutdown. This system will automatically resume the last played track when the bot is restarted.
 
 Here is an example:
+
 https://github.com/user-attachments/assets/9febe4e3-3b1e-4749-b84e-25bc70764e65
 
 
