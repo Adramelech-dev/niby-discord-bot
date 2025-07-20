@@ -61,8 +61,6 @@ services:
     image: niby-discord-bot:latest
     container_name: niby-discord-bot
     build:
-      context: ../../../
-      dockerfile: docker/images/niby/Dockerfile
       args:
         NODE_ENV: production
     environment:
