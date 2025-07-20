@@ -1,6 +1,15 @@
+> [!WARNING]  
+> This project is no longer maintained as of 2023.
+>
+> Last updated on **July 2023** | Released to open source in 2025 for contributions.
+>
+> Only minimal updates will be made to maintain the deployment and basic functionality.
+
+<br />
+
 <div align="center">
  <a href="https://github.com/dewstouh/niby-discord-bot/actions" target="_blank"><img src="https://img.shields.io/github/actions/workflow/status/dewstouh/niby-discord-bot/ci.yml?branch=main&style=for-the-badge&label=CI" alt="CI Status" /></a>
- <a href="https://discord.gg/MBPsvcphGf" target="_blank"><img src="https://img.shields.io/maintenance/yes/2025?style=for-the-badge&label=MAINTAINED" /></a>
+ <a href="https://discord.gg/MBPsvcphGf" target="_blank"><img src="https://img.shields.io/maintenance/yes/2023?style=for-the-badge&label=MAINTAINED" /></a>
  <a href="https://discord.gg/MBPsvcphGf" target="_blank"><img src="https://img.shields.io/discord/879397504075063297?color=blue&label=support&style=for-the-badge&logoColor=white" /></a>
  <a href="https://github.com/sponsors/dewstouh" target="_blank"><img src="https://img.shields.io/badge/Sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AAA"/></a>
  <a href="https://paypal.me/elmundodeniby" target="_blank"><img src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white"/></a>
@@ -10,6 +19,9 @@
  <a href="https://www.nodejs.org" target="_blank"><img src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white"/></a>
  <a href="https://expressjs.com/" target="_blank"><img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white"/></a>
  <a href="https://github.com/mashpie/i18n-node" target="_blank"><img src="https://img.shields.io/badge/i18n-Multilingual-blue?style=for-the-badge&logo=translate&logoColor=white"/></a>
+<a href="https://hub.docker.com/r/dewstouh/niby-discord-bot" target="_blank">
+  <img src="https://img.shields.io/badge/Docker%20Image%20-blue?style=for-the-badge&logo=docker&logoColor=white" />
+</a>
 
 </div>
 
@@ -81,6 +93,7 @@ Advanced moderation, a **premium music system** including sources like **Spotify
     - [☑️ Requirements](#️-requirements)
     - [📋 Installation](#-installation)
     - [⚙️ Configuration](#️-configuration)
+    - [🛠️ Auto Recovery Music System](#️-auto-recovery-music-system)
     - [🔨 Creating Commands (HYBRID)](#-creating-commands-hybrid)
       - [💬 Prefix Commands](#-prefix-commands)
     - [🔲 Creating Context Menus](#-creating-context-menus)
@@ -172,6 +185,12 @@ PORT = 3000
 > A file called `.env.test` is also included, which serves to start the bot with an exclusive configuration for __testing__ or __development__ without affecting the main configuration.
 
 When you have the bot configured and its modules installed, you can turn it on using `npm run start` or if you want to turn it on in development mode you can use `npm run dev`.
+
+### 🛠️ Auto Recovery Music System
+Niby has an auto recovery music system that allows you to recover the music playback in case of a crash or unexpected shutdown. This system will automatically resume the last played track when the bot is restarted.
+
+Here is an example:
+
 
 ### 🔨 Creating Commands (HYBRID)
 
