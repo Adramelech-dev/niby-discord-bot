@@ -26,7 +26,7 @@ jobs:
   docker-build:
     name: Build Docker Image
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     strategy:
       matrix:
         architecture: [amd64, arm64] # Support both common architectures
